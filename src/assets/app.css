@@ -1,0 +1,31 @@
+@import "tailwindcss";
+@source "../**/*.vue";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@font-face {
+    font-family: 'Chiron';
+    src: url('https://fonts.googleapis.com/css2?family=Chiron+GoRound+TC:wght@200..900&display=swap');
+}
+
+@theme {
+    --color-primary-50: #eff5f3;
+    --color-primary-100: #dfece6;
+    --color-primary-200: #bfd9ce;
+    --color-primary-300: #9fc6b5;
+    --color-primary-400: #80b39c;
+    --color-primary-500: #609f84;
+    --color-primary-600: #4d8069;
+    --color-primary-700: #39604f;
+    --color-primary-800: #264035;
+    --color-primary-900: #13201a;
+    --color-primary-950: #0d1612;
+
+    --font-sans: 'Chiron', sans-serif;
+}
+
+@layer base {
+    *, ::before, ::after {
+        @apply transition-colors duration-300;
+    }
+}

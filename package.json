@@ -1,0 +1,21 @@
+{
+  "name": "instax-package",
+  "version": "1.0.0",
+  "description": "Shared UI components and logic for Instax portals",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "peerDependencies": {
+    "@heroicons/vue": "^2.2.0",
+    "pinia": "^3.0.4",
+    "vue": "beta",
+    "vue-router": "^5.0.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.2.1",
+    "@vitejs/plugin-vue": "^6.0.5",
+    "tailwindcss": "^4.2.1",
+    "vite": "beta"
+  }
+}
