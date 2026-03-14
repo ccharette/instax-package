@@ -4,7 +4,7 @@ import ThemeToggle from "./ThemeToggle.vue";
 
 <template>
     <nav
-        class="flex items-center justify-between bg-neutral-50 px-4 min-h-12 lg:min-h-16 dark:bg-neutral-800">
+        class="sticky top-0 z-50 flex items-center justify-between bg-neutral-50 px-4 min-h-12 lg:min-h-16 dark:bg-neutral-800">
         <div>
             <slot name="left"/>
         </div>
