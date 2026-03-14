@@ -9,8 +9,8 @@ import ThemeToggle from "./ThemeToggle.vue";
             <slot name="left"/>
         </div>
         <div class="flex items-center gap-4">
-            <slot name="right"/>
             <ThemeToggle/>
+            <slot name="right"/>
         </div>
     </nav>
 </template>

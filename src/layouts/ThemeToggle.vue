@@ -17,6 +17,6 @@ const icon = computed(() => (isDark.value ? SunIcon : MoonIcon));
         aria-label="Toggle Dark Mode"
         @click="toggleDarkMode"
     >
-        <component :is="icon" class="h-5 w-5"/>
+        <component :is="icon" class="h-5 w-5 flex-none"/>
     </ButtonIcon>
 </template>

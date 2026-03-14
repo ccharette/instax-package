@@ -24,38 +24,47 @@ const toggleMenu = () => {
             aria-label="Toggle Menu"
             @click="toggleMenu"
         >
-            <Bars3Icon class="size-6"/>
+            <Bars3Icon class="size-6 flex-none"/>
         </ButtonIcon>
 
         <div v-if="isOpen"
-             class="fixed inset-0 z-50 bg-white p-4 dark:bg-neutral-900">
-            <div class="mb-8 flex justify-end">
-                <ButtonIcon
-                    aria-label="Close Menu"
-                    @click="toggleMenu"
-                >
-                    <XMarkIcon class="size-6"/>
-                </ButtonIcon>
-            </div>
+             class="fixed inset-0 z-50">
+            <!-- Backdrop -->
+            <div class="fixed inset-0 bg-neutral-900/50 backdrop-blur-sm"
+                 @click="isOpen = false"/>
 
-            <nav class="space-y-6 overflow-y-auto">
-                <div v-for="group in linkGroups" :key="group.name"
-                     class="space-y-3">
-                    <p class="text-sm font-semibold text-neutral-400 uppercase">
-                        {{ group.label }}</p>
-                    <ul class="space-y-2">
-                        <li v-for="link in group.links" :key="link.name">
-                            <NavLink
-                                :icon="link.icon"
-                                :label="link.label"
-                                :name="link.name"
-                                class="text-xl"
-                                @click="isOpen = false"
-                            />
-                        </li>
-                    </ul>
+            <!-- Menu Content -->
+            <div
+                class="fixed inset-x-0 top-0 h-auto bg-neutral-50 dark:bg-neutral-900 rounded-b-sm"
+            >
+                <div class="flex items-center justify-end min-h-12 px-4">
+                    <ButtonIcon
+                        aria-label="Close Menu"
+                        @click="toggleMenu"
+                    >
+                        <XMarkIcon class="size-6 flex-none"/>
+                    </ButtonIcon>
                 </div>
-            </nav>
+
+                <nav class="max-h-[70vh] space-y-6 overflow-y-auto p-4">
+                    <div v-for="group in linkGroups" :key="group.name"
+                         class="space-y-3">
+                        <p class="text-sm font-semibold text-neutral-400 uppercase">
+                            {{ group.label }}</p>
+                        <ul class="space-y-2">
+                            <li v-for="link in group.links" :key="link.name">
+                                <NavLink
+                                    :icon="link.icon"
+                                    :label="link.label"
+                                    :name="link.name"
+                                    class="text-xl"
+                                    @click="isOpen = false"
+                                />
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
         </div>
     </div>
 </template>

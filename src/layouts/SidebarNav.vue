@@ -1,6 +1,6 @@
 <script setup>
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/vue/24/solid";
-import { ButtonIcon } from '../components';
+import { ButtonIcon } from "../components";
 import NavLink from "./NavLink.vue";
 
 const props = defineProps({
@@ -30,20 +30,21 @@ const emit = defineEmits(["toggle-collapse"]);
         :class="[isCollapsed ? 'w-16' : 'w-60']"
         class="flex h-full flex-col overflow-hidden bg-neutral-50 transition-[width] duration-300 lg:flex dark:bg-neutral-800"
     >
-        <header
-            class="flex items-center justify-between bg-neutral-600 p-4 dark:bg-neutral-800">
+        <header class="flex items-center justify-between bg-neutral-600 p-4 dark:bg-neutral-800">
             <!-- Sidebar Header Content -->
-            <span v-if="!isCollapsed"
-                  class="text-lg font-bold whitespace-nowrap text-white"
-            >{{ headerTitle }}</span
+            <span
+                v-if="!isCollapsed"
+                class="text-lg font-bold whitespace-nowrap text-white"
             >
+                {{ headerTitle }}
+            </span>
             <ButtonIcon
                 :aria-label="isCollapsed ? 'Expand Sidebar' : 'Collapse Sidebar'"
                 @click="emit('toggle-collapse')"
             >
                 <component
                     :is="isCollapsed ? ChevronRightIcon : ChevronLeftIcon"
-                    class="size-5"/>
+                    class="size-5 flex-none"/>
             </ButtonIcon>
         </header>
         <section class="flex-1 space-y-6 overflow-y-auto p-2">
@@ -76,10 +77,11 @@ const emit = defineEmits(["toggle-collapse"]);
             class="flex flex-col gap-4 overflow-hidden bg-neutral-800 p-4 dark:bg-black">
             <!-- Sidebar Footer Content -->
             <div class="flex items-center justify-between">
-        <span v-if="!isCollapsed"
-              class="text-sm whitespace-nowrap text-neutral-400"
-        >{{ footerTitle }}</span
-        >
+                <span v-if="!isCollapsed"
+                      class="text-sm whitespace-nowrap text-neutral-400"
+                >
+                    {{ footerTitle }}
+                </span>
             </div>
         </footer>
     </nav>
