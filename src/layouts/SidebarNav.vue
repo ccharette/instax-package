@@ -1,6 +1,6 @@
 <script setup>
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/vue/24/solid";
-import { ButtonIcon } from "../components";
+import { ButtonIcon } from "../components/ui";
 import NavLink from "./NavLink.vue";
 
 const props = defineProps({
@@ -15,10 +15,6 @@ const props = defineProps({
     headerTitle: {
         type: String,
         default: "Sidebar Header",
-    },
-    footerTitle: {
-        type: String,
-        default: "Sidebar Footer",
     },
 });
 
@@ -38,14 +34,6 @@ const emit = defineEmits(["toggle-collapse"]);
             >
                 {{ headerTitle }}
             </span>
-            <ButtonIcon
-                :aria-label="isCollapsed ? 'Expand Sidebar' : 'Collapse Sidebar'"
-                @click="emit('toggle-collapse')"
-            >
-                <component
-                    :is="isCollapsed ? ChevronRightIcon : ChevronLeftIcon"
-                    class="size-5 flex-none"/>
-            </ButtonIcon>
         </header>
         <section class="flex-1 space-y-6 overflow-y-auto p-2">
             <!-- Growing Sidebar Middle Content -->
@@ -73,15 +61,24 @@ const emit = defineEmits(["toggle-collapse"]);
                 </ul>
             </div>
         </section>
-        <footer
-            class="flex flex-col gap-4 overflow-hidden bg-neutral-800 p-4 dark:bg-black">
+        <footer class="flex flex-col gap-4 overflow-hidden p-2">
             <!-- Sidebar Footer Content -->
+            <slot name="footer" :is-collapsed="isCollapsed"/>
             <div class="flex items-center justify-between">
-                <span v-if="!isCollapsed"
-                      class="text-sm whitespace-nowrap text-neutral-400"
+                <span 
+                  v-if="!isCollapsed"
+                  class="text-xs whitespace-nowrap text-neutral-400 dark:text-neutral-500"
                 >
-                    {{ footerTitle }}
+                    Instax 2026
                 </span>
+                <ButtonIcon
+                  :aria-label="isCollapsed ? 'Expand Sidebar' : 'Collapse Sidebar'"
+                  @click="emit('toggle-collapse')"
+                >
+                  <component
+                    :is="isCollapsed ? ChevronRightIcon : ChevronLeftIcon"
+                    class="size-5 flex-none"/>
+                </ButtonIcon>
             </div>
         </footer>
     </nav>

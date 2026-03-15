@@ -2,7 +2,7 @@
 import './src/assets/app.css';
 
 // Components
-export * from './src/components/index.js';
+export * from './src/components/ui';
 
 // Layouts
 export * from './src/layouts/index.js';

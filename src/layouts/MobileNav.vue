@@ -1,7 +1,7 @@
 <script setup>
 import { Bars3Icon, XMarkIcon } from "@heroicons/vue/24/solid";
 import { ref } from "vue";
-import { ButtonIcon } from '../components';
+import { ButtonIcon } from '../components/ui';
 import NavLink from "./NavLink.vue";
 
 defineProps({
