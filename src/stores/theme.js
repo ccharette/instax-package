@@ -9,6 +9,14 @@ export const useThemeStore = defineStore("theme", () => {
 
   const isCollapsed = ref(typeof window !== "undefined" && localStorage.getItem("isCollapsed") === "true");
 
+  const isInitialLoading = ref(true);
+
+  if (typeof window !== "undefined") {
+    setTimeout(() => {
+      isInitialLoading.value = false;
+    }, 3000);
+  }
+
   const toggleDarkMode = () => {
     isDark.value = !isDark.value;
   };
@@ -44,5 +52,6 @@ export const useThemeStore = defineStore("theme", () => {
     toggleDarkMode,
     isCollapsed,
     toggleCollapse,
+    isInitialLoading,
   };
 });

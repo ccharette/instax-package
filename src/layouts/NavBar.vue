@@ -1,6 +1,7 @@
 <script setup>
 import ThemeToggle from "./ThemeToggle.vue";
-import { Bars3Icon, XMarkIcon } from "@heroicons/vue/24/solid";
+import NotificationButton from "./NotificationButton.vue";
+import { Bars3Icon } from "@heroicons/vue/24/outline";
 import { storeToRefs } from "pinia";
 import { ButtonIcon } from "../components/ui";
 import { useThemeStore } from "../stores/theme.js";
@@ -25,6 +26,7 @@ const { toggleCollapse } = themeStore;
             <slot name="left"/>
         </div>
         <div class="flex items-center gap-4">
+            <NotificationButton has-notifications />
             <ThemeToggle/>
             <slot name="right"/>
         </div>

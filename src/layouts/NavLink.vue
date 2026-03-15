@@ -1,6 +1,7 @@
 <script setup>
 import { storeToRefs } from "pinia";
 import { useThemeStore } from "../stores/theme.js";
+import { NotificationIndicator } from "../components/ui";
 
 const themeStore = useThemeStore();
 const { isCollapsed } = storeToRefs(themeStore);
@@ -50,27 +51,27 @@ const selectLink = () => {
           isCollapsed ? 'lg:size-5 size-4 opacity-50' : 'size-4 opacity-50',
         ]"
       />
-      <span
+      <NotificationIndicator
           v-if="notification && isCollapsed"
-          class="max-lg:hidden bg-primary-500 absolute top-2 right-2 h-2 w-2 rounded-full ring-2 ring-white dark:ring-neutral-800"
-      ></span>
+          dot-only
+          class="max-lg:hidden absolute top-2 right-2"
+          :ring-class="isActive ? 'ring-primary-200 dark:ring-primary-700' : 'ring-neutral-50 dark:ring-neutral-800'"
+      />
       <span
           v-if="!isCollapsed"
           :class="['grow whitespace-nowrap', isActive ? 'font-medium' : 'font-normal', { 'lg:hidden': isCollapsed }]"
       >
         {{ label }}
       </span>
-      <span
+      <NotificationIndicator
           v-if="notification && !isCollapsed"
+          :count="notification"
           :class="[
-              'flex h-5 items-center justify-center rounded-sm px-2 text-xs',
               isActive
                 ? 'bg-primary-300 dark:bg-primary-300 text-primary-800'
                 : 'bg-neutral-200/80 text-neutral-500 group-hover:bg-neutral-300 dark:bg-neutral-500 dark:text-neutral-900 group-hover:dark:bg-neutral-500/75',
           ]"
-      >
-        {{ notification }}
-      </span>
+      />
     </span>
     </router-link>
 </template>
