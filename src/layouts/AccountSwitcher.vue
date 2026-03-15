@@ -1,6 +1,12 @@
 <script setup>
 import { ChevronUpDownIcon } from '@heroicons/vue/24/solid';
+import { storeToRefs } from 'pinia';
 import { ref } from 'vue';
+import { useThemeStore } from '../stores/theme.js';
+
+const themeStore = useThemeStore();
+const { isCollapsed } = storeToRefs(themeStore);
+const { toggleCollapse } = themeStore;
 
 defineProps({
     accounts: {
@@ -10,10 +16,6 @@ defineProps({
     currentAccount: {
         type: Object,
         default: null,
-    },
-    isCollapsed: {
-        type: Boolean,
-        default: false,
     },
 })
 
@@ -28,6 +30,7 @@ const toggleAccountSwitcher = () => {
 const selectAccount = (account) => {
     emit("account-change", account);
     isAccountSwitcherOpen.value = false;
+    toggleCollapse(true);
 };
 </script>
 

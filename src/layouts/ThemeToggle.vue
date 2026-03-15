@@ -14,6 +14,7 @@ const icon = computed(() => (isDark.value ? SunIcon : MoonIcon));
 
 <template>
     <ButtonIcon
+        class="inline-flex"
         aria-label="Toggle Dark Mode"
         @click="toggleDarkMode"
     >
