@@ -24,16 +24,24 @@ const emit = defineEmits(["toggle-collapse"]);
 <template>
     <nav
         :class="[isCollapsed ? 'w-16' : 'w-60']"
-        class="flex h-full flex-col overflow-hidden bg-neutral-50 transition-[width] duration-300 lg:flex dark:bg-neutral-800"
+        class="relative flex h-full flex-col overflow-hidden bg-neutral-50 transition-[width] duration-300 lg:flex dark:bg-neutral-800"
     >
-        <header class="flex items-center justify-between bg-neutral-600 p-4 dark:bg-neutral-800">
+        <header class="p-2  min-h-12 lg:min-h-16 flex items-center justify-between w-full">
             <!-- Sidebar Header Content -->
             <span
                 v-if="!isCollapsed"
-                class="text-lg font-bold whitespace-nowrap text-white"
+                class="block p-1 text-lg font-bold whitespace-nowrap text-white"
             >
                 {{ headerTitle }}
             </span>
+            <ButtonIcon
+                :aria-label="isCollapsed ? 'Expand Sidebar' : 'Collapse Sidebar'"
+                @click="emit('toggle-collapse')"
+            >
+                <component
+                    :is="isCollapsed ? ChevronRightIcon : ChevronLeftIcon"
+                    class="size-5 flex-none"/>
+            </ButtonIcon>
         </header>
         <section class="flex-1 space-y-6 overflow-y-auto p-2">
             <!-- Growing Sidebar Middle Content -->
@@ -71,14 +79,6 @@ const emit = defineEmits(["toggle-collapse"]);
                 >
                     Instax 2026
                 </span>
-                <ButtonIcon
-                  :aria-label="isCollapsed ? 'Expand Sidebar' : 'Collapse Sidebar'"
-                  @click="emit('toggle-collapse')"
-                >
-                  <component
-                    :is="isCollapsed ? ChevronRightIcon : ChevronLeftIcon"
-                    class="size-5 flex-none"/>
-                </ButtonIcon>
             </div>
         </footer>
     </nav>
