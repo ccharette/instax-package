@@ -1,4 +1,2 @@
-import ButtonIcon from "./ButtonIcon.vue";
-import NotificationIndicator from "./NotificationIndicator.vue";
-
-export { ButtonIcon, NotificationIndicator };
+export { default as ButtonIcon } from "./ButtonIcon.vue";
+export { default as NotificationIndicator } from "./NotificationIndicator.vue";

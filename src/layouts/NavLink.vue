@@ -1,9 +1,12 @@
 <script setup>
 import { storeToRefs } from "pinia";
-import { useThemeStore } from "../stores/theme.js";
+import { useThemeStore, useScreenStore } from "../stores";
 import { NotificationIndicator } from "../components/ui";
 
 const themeStore = useThemeStore();
+const screenStore = useScreenStore();
+
+const { isLg } = storeToRefs(screenStore);
 const { isCollapsed } = storeToRefs(themeStore);
 const { toggleCollapse } = themeStore;
 
@@ -26,9 +29,11 @@ defineProps({
     },
 });
 const selectLink = () => {
-    setTimeout(() => {
-        toggleCollapse(true);
-    }, 100);
+    if (!isLg.value) {
+        setTimeout(() => {
+            toggleCollapse(true);
+        }, 100);
+    }
 };
 </script>
 

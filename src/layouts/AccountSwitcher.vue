@@ -2,7 +2,7 @@
 import { ChevronUpDownIcon } from '@heroicons/vue/24/solid';
 import { storeToRefs } from 'pinia';
 import { ref } from 'vue';
-import { useThemeStore } from '../stores/theme.js';
+import { useThemeStore } from '../stores';
 
 const themeStore = useThemeStore();
 const { isCollapsed } = storeToRefs(themeStore);

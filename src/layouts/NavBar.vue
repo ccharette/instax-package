@@ -4,7 +4,7 @@ import NotificationButton from "./NotificationButton.vue";
 import { Bars3Icon } from "@heroicons/vue/24/outline";
 import { storeToRefs } from "pinia";
 import { ButtonIcon } from "../components/ui";
-import { useThemeStore } from "../stores/theme.js";
+import { useThemeStore } from "../stores";
 
 const themeStore = useThemeStore();
 const { isCollapsed } = storeToRefs(themeStore);

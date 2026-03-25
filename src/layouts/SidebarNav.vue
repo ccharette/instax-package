@@ -2,7 +2,7 @@
 import { ChevronLeftIcon, ChevronRightIcon, Bars3Icon, XMarkIcon } from "@heroicons/vue/24/solid";
 import { storeToRefs } from "pinia";
 import { ButtonIcon } from "../components/ui";
-import { useThemeStore } from "../stores/theme.js";
+import { useThemeStore } from "../stores";
 import NavLink from "./NavLink.vue";
 
 const themeStore = useThemeStore();

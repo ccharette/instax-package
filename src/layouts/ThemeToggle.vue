@@ -3,7 +3,7 @@ import { MoonIcon, SunIcon } from "@heroicons/vue/24/outline";
 import { storeToRefs } from "pinia";
 import { computed } from "vue";
 import { ButtonIcon } from '../components/ui';
-import { useThemeStore } from "../stores/theme.js";
+import { useThemeStore } from "../stores";
 
 const themeStore = useThemeStore();
 const {isDark} = storeToRefs(themeStore);

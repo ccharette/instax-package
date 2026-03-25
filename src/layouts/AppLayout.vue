@@ -1,6 +1,6 @@
 <script setup>
 import { storeToRefs } from "pinia";
-import { useThemeStore } from "../stores/theme.js";
+import { useThemeStore } from "../stores";
 
 const themeStore = useThemeStore();
 const { isCollapsed } = storeToRefs(themeStore);
