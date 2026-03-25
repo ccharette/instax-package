@@ -5,7 +5,24 @@
   "license": "ISC",
   "author": "",
   "type": "module",
-  "main": "index.js",
+  "main": "dist/instax-package.umd.js",
+  "module": "dist/instax-package.es.js",
+  "exports": {
+    ".": {
+      "development": "./index.js",
+      "import": "./dist/instax-package.es.js",
+      "require": "./dist/instax-package.umd.js"
+    },
+    "./style.css": "./dist/instax-package.css",
+    "./src/*": "./src/*"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite build --watch"
+  },
   "peerDependencies": {
     "@heroicons/vue": "^2.2.0",
     "pinia": "^3.0.4",

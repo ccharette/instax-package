@@ -1,4 +1,4 @@
-import { useEvents } from '@composables';
+import { useEvents } from '../../composables';
 import { defineStore } from "pinia";
 import { ref, computed } from "vue";
 
