@@ -2,10 +2,13 @@
 import { ChevronLeftIcon, ChevronRightIcon, Bars3Icon, XMarkIcon } from "@heroicons/vue/24/solid";
 import { storeToRefs } from "pinia";
 import { ButtonIcon } from "../components/ui";
-import { useThemeStore } from "../stores";
+import { useScreenStore, useThemeStore } from "../stores";
 import NavLink from "./NavLink.vue";
 
 const themeStore = useThemeStore();
+const screenStore = useScreenStore();
+
+const { isLg } = storeToRefs(screenStore);
 const { isCollapsed } = storeToRefs(themeStore);
 const { toggleCollapse } = themeStore;
 
@@ -19,6 +22,15 @@ defineProps({
         default: "Sidebar Header",
     },
 });
+
+
+const selectLink = () => {
+    if (!isLg.value) {
+        setTimeout(() => {
+            toggleCollapse(true);
+        }, 100);
+    }
+};
 </script>
 
 <template>
@@ -68,6 +80,7 @@ defineProps({
             </ButtonIcon>
         </header>
         <section class="flex-1 space-y-6 overflow-y-auto p-2">
+            <slot name="header" />
             <!-- Growing Sidebar Middle Content -->
             <div
                 v-for="group in linkGroups"
@@ -84,9 +97,11 @@ defineProps({
                     <li v-for="link in group.links" :key="link.name">
                         <NavLink
                             :icon="link.icon"
+                            :is-collapsed="isCollapsed"
                             :label="link.label"
                             :name="link.name"
                             :notification="link.notification"
+                            @select-link="selectLink"
                         />
                     </li>
                 </ul>

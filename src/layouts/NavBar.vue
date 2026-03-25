@@ -1,14 +1,27 @@
 <script setup>
-import ThemeToggle from "./ThemeToggle.vue";
-import NotificationButton from "./NotificationButton.vue";
-import { Bars3Icon } from "@heroicons/vue/24/outline";
-import { storeToRefs } from "pinia";
+import { NotificationButton, ThemeToggle, UserDropdown } from "./";
 import { ButtonIcon } from "../components/ui";
 import { useThemeStore } from "../stores";
+import { Bars3Icon } from "@heroicons/vue/24/outline";
+import { storeToRefs } from "pinia";
 
 const themeStore = useThemeStore();
+
 const { isCollapsed } = storeToRefs(themeStore);
 const { toggleCollapse } = themeStore;
+
+defineProps({
+    userDropdownLinks: {
+        type: Array,
+        default: () => []
+    },
+    user: {
+        type: Object,
+        default: null
+    }
+});
+
+defineEmits(['logout', 'account-change', 'profile']);
 </script>
 
 <template>
@@ -28,7 +41,16 @@ const { toggleCollapse } = themeStore;
         <div class="flex items-center gap-4">
             <NotificationButton has-notifications />
             <ThemeToggle/>
-            <slot name="right"/>
+            <UserDropdown
+                v-if="user"
+                :link-groups="userDropdownLinks"
+                :user="user"
+                @logout="$emit('logout')"
+            >
+                <template #header>
+                    <slot name="user-dropdown"/>
+                </template>
+            </UserDropdown>
         </div>
     </nav>
 </template>

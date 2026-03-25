@@ -62,16 +62,16 @@ const selectAccount = (account) => {
             />
             <div
                 v-if="isAccountSwitcherOpen"
-                class="fixed left-2 top-14 z-[61] w-56 space-y-1 rounded-md bg-white p-1 shadow-xl ring-1 ring-neutral-200 dark:bg-neutral-800 dark:ring-neutral-700"
+                class="fixed right-2 top-14 z-[61] w-56 space-y-1 rounded-md bg-white p-1 shadow-xl ring-1 ring-neutral-200 dark:bg-neutral-800 dark:ring-neutral-700"
             >
                 <button
                     v-for="account in accounts"
                     :key="account.id"
                     :class="[
-                                account.id === currentAccount?.id
-                                    ? 'bg-neutral-100 dark:bg-neutral-700'
-                                    : 'hover:bg-neutral-50 dark:hover:bg-neutral-700/50'
-                            ]"
+                        account.id === currentAccount?.id
+                            ? 'bg-neutral-100 dark:bg-neutral-700'
+                            : 'hover:bg-neutral-50 dark:hover:bg-neutral-700/50'
+                    ]"
                     class="flex w-full items-center gap-3 rounded-sm p-2 text-left"
                     @click="selectAccount(account)"
                 >
@@ -81,8 +81,8 @@ const selectAccount = (account) => {
                         {{ account.name?.charAt(0) }}
                     </div>
                     <span class="truncate text-sm font-medium text-neutral-700 dark:text-neutral-200">
-                                {{ account.name }}
-                            </span>
+                        {{ account.name }}
+                    </span>
                 </button>
             </div>
         </Teleport>

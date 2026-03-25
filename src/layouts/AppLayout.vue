@@ -6,13 +6,6 @@ const themeStore = useThemeStore();
 const { isCollapsed } = storeToRefs(themeStore);
 const { toggleCollapse } = themeStore;
 
-defineProps({
-  sidebarProps: {
-    type: Object,
-    required: false,
-    default: () => ({}),
-  },
-});
 </script>
 
 <template>
@@ -20,7 +13,7 @@ defineProps({
     class="grid min-h-screen grid-cols-1 grid-rows-[auto_1fr] bg-neutral-200/60 lg:grid-cols-[auto_1fr] dark:bg-neutral-900"
   >
     <slot name="sidebar">
-      <slot name="sidebar-nav" v-bind="{ ...sidebarProps, isCollapsed, onToggleCollapse: toggleCollapse }" />
+      <slot name="sidebar-nav" />
     </slot>
     <div class="flex flex-col min-h-screen">
       <slot 
