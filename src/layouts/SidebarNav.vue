@@ -42,7 +42,7 @@ const selectLink = () => {
     >
         <div
             v-if="!isCollapsed"
-            class="fixed inset-0 z-[60] bg-neutral-900/50 backdrop-blur-sm lg:hidden"
+            class="backdrop fixed inset-0 z-[60] lg:hidden"
             @click="toggleCollapse"
         />
     </Transition>

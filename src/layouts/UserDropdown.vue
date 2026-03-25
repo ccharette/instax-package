@@ -1,4 +1,5 @@
 <script setup>
+import { Dropdown } from '../components/ui';
 import { NavLink } from './';
 import { ref } from 'vue';
 import { ArrowRightOnRectangleIcon, ChevronDownIcon } from '@heroicons/vue/20/solid';
@@ -52,12 +53,12 @@ const handleLogout = () => {
         <Teleport to="body">
             <div
                 v-if="isOpen"
-                class="fixed inset-0 z-[60]"
+                class="backdrop fixed inset-0 z-[60]"
                 @click="isOpen = false"
             />
-            <div
+            <Dropdown
                 v-if="isOpen"
-                class="fixed right-4 top-14 z-61 w-64 rounded-sm bg-neutral-50 shadow-sm ring-1 ring-neutral-100 dark:bg-neutral-800 dark:ring-neutral-700"
+                class="fixed right-4 top-14 z-61 w-64"
             >
                 <div class="px-4 py-3">
                     <slot name="header" />
@@ -78,7 +79,7 @@ const handleLogout = () => {
                         red
                     />
                 </div>
-            </div>
+            </Dropdown>
         </Teleport>
     </div>
 </template>

@@ -2,6 +2,7 @@
 import { ChevronUpDownIcon } from '@heroicons/vue/24/solid';
 import { storeToRefs } from 'pinia';
 import { ref } from 'vue';
+import { Dropdown } from '../components/ui';
 import { useThemeStore } from '../stores';
 
 const themeStore = useThemeStore();
@@ -60,9 +61,9 @@ const selectAccount = (account) => {
                 class="fixed inset-0 z-[60]"
                 @click="isAccountSwitcherOpen = false"
             />
-            <div
+            <Dropdown
                 v-if="isAccountSwitcherOpen"
-                class="fixed right-2 top-14 z-[61] w-56 space-y-1 rounded-md bg-white p-1 shadow-xl ring-1 ring-neutral-200 dark:bg-neutral-800 dark:ring-neutral-700"
+                class="fixed right-2 top-14 z-[61] w-56 space-y-1 p-1"
             >
                 <button
                     v-for="account in accounts"
@@ -84,7 +85,7 @@ const selectAccount = (account) => {
                         {{ account.name }}
                     </span>
                 </button>
-            </div>
+            </Dropdown>
         </Teleport>
     </div>
 </template>
