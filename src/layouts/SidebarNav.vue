@@ -1,9 +1,11 @@
 <script setup>
+import NavLink from "./NavLink.vue";
+import { Backdrop, ButtonIcon } from "../components/ui";
+import { useEvents } from '../composables';
+import { useScreenStore, useThemeStore } from "../stores";
 import { ChevronLeftIcon, ChevronRightIcon, Bars3Icon, XMarkIcon } from "@heroicons/vue/24/solid";
 import { storeToRefs } from "pinia";
-import { ButtonIcon } from "../components/ui";
-import { useScreenStore, useThemeStore } from "../stores";
-import NavLink from "./NavLink.vue";
+import { computed } from 'vue';
 
 const themeStore = useThemeStore();
 const screenStore = useScreenStore();
@@ -17,12 +19,12 @@ defineProps({
         type: Array,
         required: true,
     },
-    headerTitle: {
-        type: String,
-        default: "Sidebar Header",
-    },
 });
 
+const isOpen = computed({
+    get: () => !isCollapsed.value,
+    set: () => toggleCollapse(),
+});
 
 const selectLink = () => {
     if (!isLg.value) {
@@ -31,6 +33,8 @@ const selectLink = () => {
         }, 100);
     }
 };
+
+useEvents().listen('resize', toggleCollapse(true));
 </script>
 
 <template>
@@ -40,15 +44,11 @@ const selectLink = () => {
         enter-from-class="opacity-0"
         leave-to-class="opacity-0"
     >
-        <div
-            v-if="!isCollapsed"
-            class="backdrop fixed inset-0 z-[60] lg:hidden"
-            @click="toggleCollapse"
-        />
+        <Backdrop v-model:isOpen="isOpen" class="lg:hidden" />
     </Transition>
     <nav
         :class="[isCollapsed ? 'w-0 lg:w-16' : 'w-60']"
-        class="fixed inset-y-0 left-0 z-[60] flex h-full flex-col overflow-hidden bg-neutral-50 transition-all duration-300 lg:relative lg:flex lg:z-40 dark:bg-neutral-800"
+        class="fixed inset-y-0 left-0 z-60 flex h-full flex-col overflow-hidden bg-neutral-50 transition-all duration-300 lg:relative lg:flex lg:z-40 dark:bg-neutral-800"
     >
         <header class="p-2 min-h-12 lg:min-h-16 flex items-center justify-between w-full">
             <!-- Sidebar Header Content -->
@@ -56,7 +56,7 @@ const selectLink = () => {
                 class="block p-1 text-lg font-bold whitespace-nowrap text-neutral-900 dark:text-white"
                 :class="{'lg:hidden': isCollapsed}"
             >
-                {{ headerTitle }}
+                
             </span>
             <ButtonIcon
                 class="hidden lg:inline-flex"
@@ -110,9 +110,9 @@ const selectLink = () => {
         <footer class="flex flex-col gap-4 overflow-hidden p-2">
             <!-- Sidebar Footer Content -->
             <slot name="footer" :is-collapsed="isCollapsed"/>
-            <div class="flex items-center justify-between">
+            <div class="flex items-center justify-center">
                 <span
-                  class="text-xs whitespace-nowrap text-neutral-400 dark:text-neutral-500"
+                  class="text-xs uppercase whitespace-nowrap text-neutral-400 dark:text-neutral-500"
                   :class="{'lg:hidden': isCollapsed}"
                 >
                     Instax 2026

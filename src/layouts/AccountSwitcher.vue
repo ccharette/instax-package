@@ -2,7 +2,7 @@
 import { ChevronUpDownIcon } from '@heroicons/vue/24/solid';
 import { storeToRefs } from 'pinia';
 import { ref } from 'vue';
-import { Dropdown } from '../components/ui';
+import { Backdrop, Dropdown } from '../components/ui';
 import { useThemeStore } from '../stores';
 
 const themeStore = useThemeStore();
@@ -30,8 +30,6 @@ const toggleAccountSwitcher = () => {
 
 const selectAccount = (account) => {
     emit("account-change", account);
-    isAccountSwitcherOpen.value = false;
-    toggleCollapse(true);
 };
 </script>
 
@@ -56,14 +54,10 @@ const selectAccount = (account) => {
 
         <!-- Account Dropdown -->
         <Teleport to="body">
-            <div
-                v-if="isAccountSwitcherOpen"
-                class="fixed inset-0 z-[60]"
-                @click="isAccountSwitcherOpen = false"
-            />
+            <Backdrop v-model:isOpen="isAccountSwitcherOpen" />
             <Dropdown
                 v-if="isAccountSwitcherOpen"
-                class="fixed right-2 top-14 z-[61] w-56 space-y-1 p-1"
+                class="fixed left-2 bottom-14 z-61 w-56 space-y-1 p-1"
             >
                 <button
                     v-for="account in accounts"

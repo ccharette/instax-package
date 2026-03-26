@@ -1,5 +1,5 @@
 <script setup>
-import { Dropdown } from '../components/ui';
+import { Backdrop, Dropdown } from '../components/ui';
 import { NavLink } from './';
 import { ref } from 'vue';
 import { ArrowRightOnRectangleIcon, ChevronDownIcon } from '@heroicons/vue/20/solid';
@@ -51,11 +51,7 @@ const handleLogout = () => {
         </button>
 
         <Teleport to="body">
-            <div
-                v-if="isOpen"
-                class="backdrop fixed inset-0 z-[60]"
-                @click="isOpen = false"
-            />
+            <Backdrop v-model:isOpen="isOpen" />
             <Dropdown
                 v-if="isOpen"
                 class="fixed right-4 top-14 z-61 w-64"

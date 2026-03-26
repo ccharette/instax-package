@@ -28,8 +28,4 @@
     *, ::before, ::after {
         @apply transition-colors duration-300;
     }
-    
-    .backdrop {
-        @apply bg-neutral-900/5 backdrop-blur-[1px];
-    }
 }
