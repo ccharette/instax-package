@@ -20,7 +20,7 @@ const { toggleCollapse } = themeStore;
           name="navbar" 
           v-bind="{ isCollapsed, onToggleCollapse: toggleCollapse }" 
       />
-      <main class="flex-1">
+      <main class="flex-1 p-12">
         <slot />
       </main>
     </div>

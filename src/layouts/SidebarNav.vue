@@ -27,6 +27,7 @@ const isOpen = computed({
 });
 
 const selectLink = () => {
+    console.debug('Link selected', isLg.value);
     if (!isLg.value) {
         setTimeout(() => {
             toggleCollapse(true);
@@ -34,7 +35,7 @@ const selectLink = () => {
     }
 };
 
-useEvents().listen('resize', toggleCollapse(true));
+useEvents().listen('resize', () => toggleCollapse(true));
 </script>
 
 <template>
