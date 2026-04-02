@@ -1,6 +1,6 @@
 <script setup>
 import NavLink from "./NavLink.vue";
-import { Backdrop, ButtonIcon } from "../components/ui";
+import { Backdrop, Button } from "../components/ui";
 import { useEvents } from '../composables';
 import { useScreenStore, useThemeStore } from "../stores";
 import { ChevronLeftIcon, ChevronRightIcon, Bars3Icon, XMarkIcon } from "@heroicons/vue/24/solid";
@@ -59,7 +59,9 @@ useEvents().listen('resize', () => toggleCollapse(true));
             >
                 
             </span>
-            <ButtonIcon
+            <Button
+                variant="ghost"
+                size="icon"
                 class="hidden lg:inline-flex"
                 :aria-label="isCollapsed ? 'Expand Sidebar' : 'Collapse Sidebar'"
                 @click="toggleCollapse"
@@ -68,8 +70,10 @@ useEvents().listen('resize', () => toggleCollapse(true));
                     :is="isCollapsed ? ChevronRightIcon : ChevronLeftIcon"
                     class="size-5 flex-none"
                 />
-            </ButtonIcon>
-            <ButtonIcon
+            </Button>
+            <Button
+                variant="ghost"
+                size="icon"
                 class="inline-flex lg:hidden"
                 :aria-label="isCollapsed ? 'Open Menu' : 'Close Menu'"
                 @click="toggleCollapse"
@@ -78,7 +82,7 @@ useEvents().listen('resize', () => toggleCollapse(true));
                     :is="isCollapsed ? Bars3Icon : XMarkIcon"
                     class="size-6 flex-none"
                 />
-            </ButtonIcon>
+            </Button>
         </header>
         <section class="flex-1 space-y-6 overflow-y-auto p-2">
             <slot name="header" />

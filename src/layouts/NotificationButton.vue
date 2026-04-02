@@ -1,6 +1,6 @@
 <script setup>
 import { BellIcon } from "@heroicons/vue/24/outline";
-import { ButtonIcon, NotificationIndicator } from "../components/ui";
+import { Button, NotificationIndicator } from "../components/ui";
 
 defineProps({
     hasNotifications: {
@@ -12,12 +12,14 @@ defineProps({
 
 <template>
     <div class="relative">
-        <ButtonIcon
+        <Button
+            variant="ghost"
+            size="icon"
             aria-label="View Notifications"
             class="inline-flex"
         >
             <BellIcon class="size-6 flex-none" />
-        </ButtonIcon>
+        </Button>
         <NotificationIndicator
             v-if="hasNotifications"
             dot-only
