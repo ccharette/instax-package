@@ -1,7 +1,7 @@
 <script setup>
 import { storeToRefs } from "pinia";
 import { useThemeStore, useModalStore } from "../stores";
-import { Modal, Button, ExampleModal } from "../components/ui";
+import { Modal, Button, ExampleModal, StepperModalContent, AnotherStepperModalContent } from "../components/ui";
 
 const themeStore = useThemeStore();
 const modalStore = useModalStore();
@@ -14,6 +14,7 @@ const openExampleModal = () => {
     title: 'Confirm Exit',
     message: 'Are you sure you want to leave? All your progress will be lost.',
     size: 'sm',
+    confirmLabel: 'Leave',
     onConfirm: () => {
       console.log('User confirmed leaving');
       alert('Action confirmed!');
@@ -35,6 +36,24 @@ const openCustomContentModal = () => {
     showFooter: false,
   });
 };
+
+const openStepperModal = () => {
+  modalStore.open({
+    title: 'Step 1: Introduction',
+    component: StepperModalContent,
+    size: 'md',
+    showFooter: true,
+  });
+};
+
+const openAnotherStepperModal = () => {
+  modalStore.open({
+    title: 'Custom Stepper',
+    component: AnotherStepperModalContent,
+    size: 'md',
+    showFooter: true,
+  });
+};
 </script>
 
 <template>
@@ -53,17 +72,29 @@ const openCustomContentModal = () => {
         <slot />
         
         <!-- Example Modal Triggers -->
-        <div class="mt-8 pt-8 border-t border-neutral-300 dark:border-neutral-700 flex gap-4">
+        <div class="mt-8 pt-8 border-t border-neutral-300 dark:border-neutral-700 grid grid-cols-1 md:grid-cols-4 gap-4">
           <div>
             <p class="mb-4 text-sm italic">Example of message modal:</p>
-            <Button variant="outline" @click="openExampleModal">
+            <Button variant="outline" @click="openExampleModal" class="w-full">
               Open Sample Modal
             </Button>
           </div>
           <div>
             <p class="mb-4 text-sm italic">Example of custom component modal:</p>
-            <Button variant="outline" @click="openCustomContentModal">
+            <Button variant="outline" @click="openCustomContentModal" class="w-full">
               Open Custom Content Modal
+            </Button>
+          </div>
+          <div>
+            <p class="mb-4 text-sm italic">Example of stepper modal:</p>
+            <Button variant="outline" @click="openStepperModal" class="w-full">
+              Open Stepper Modal
+            </Button>
+          </div>
+          <div>
+            <p class="mb-4 text-sm italic">Another stepper example:</p>
+            <Button variant="outline" @click="openAnotherStepperModal" class="w-full">
+              Open Custom Stepper
             </Button>
           </div>
         </div>
@@ -73,8 +104,29 @@ const openCustomContentModal = () => {
     <!-- Global Modal Component -->
     <Modal>
       <template #footer>
-        <Button variant="ghost" @click="modalStore.close()">Cancel</Button>
-        <Button variant="danger" @click="modalStore.confirm()">Leave</Button>
+        <Button 
+            v-if="modalStore.options.cancelLabel"
+            variant="ghost" 
+            :disabled="modalStore.options.cancelDisabled"
+            @click="modalStore.options.cancelLabel === 'Back' ? modalStore.back() : modalStore.close()"
+        >
+            {{ modalStore.options.cancelLabel }}
+        </Button>
+        <Button 
+            v-if="modalStore.options.showBackButton"
+            variant="outline" 
+            :disabled="modalStore.options.backDisabled"
+            @click="modalStore.back()"
+        >
+            {{ modalStore.options.backLabel }}
+        </Button>
+        <Button 
+            variant="primary" 
+            :disabled="modalStore.options.confirmDisabled"
+            @click="modalStore.confirm()"
+        >
+            {{ modalStore.options.confirmLabel }}
+        </Button>
       </template>
     </Modal>
   </div>

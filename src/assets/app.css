@@ -43,4 +43,20 @@
     .btn-ghost {
         @apply text-neutral-500 hover:not-disabled:text-neutral-600 hover:not-disabled:bg-neutral-200/45 dark:text-neutral-300 dark:hover:not-disabled:text-neutral-200 dark:hover:not-disabled:bg-neutral-700/45;
     }
+
+    /* Stepper Transitions */
+    .step-fade-enter-active,
+    .step-fade-leave-active {
+        transition: all 0.3s ease;
+    }
+
+    .step-fade-enter-from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+
+    .step-fade-leave-to {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
 }

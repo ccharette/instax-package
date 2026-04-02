@@ -100,8 +100,25 @@ watch(isOpen, (value) => {
                         </slot>
                     </div>
 
+                    <!-- Stepper Indicator (Bottom - Compact) -->
+                    <div v-if="options.showStepper && options.totalSteps > 0" class="flex items-center justify-between px-6 pb-4">
+                        <span class="text-xs text-neutral-400">Step {{ options.currentStepIndex + 1 }} of {{ options.totalSteps }}</span>
+                        
+                        <div class="flex items-center gap-1.5">
+                            <div
+                                v-for="i in options.totalSteps"
+                                :key="i"
+                                class="h-1.5 rounded-full transition-all duration-500 ease-in-out"
+                                :class="[
+                                    (i - 1) < options.currentStepIndex ? 'bg-primary-600 w-4' : 
+                                    (i - 1) === options.currentStepIndex ? 'bg-primary-500 w-8' : 'bg-neutral-200 dark:bg-neutral-700 w-4',
+                                ]"
+                            />
+                        </div>
+                    </div>
+
                     <!-- Footer Slot -->
-                    <div v-if="$slots.footer && options.showFooter" class="flex justify-end gap-2 p-4 border-t border-neutral-200 dark:border-neutral-700">
+                    <div v-if="$slots.footer && options.showFooter" class="flex justify-end gap-2 p-4">
                         <slot name="footer" />
                     </div>
                 </div>
