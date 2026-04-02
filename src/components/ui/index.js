@@ -1,5 +1,7 @@
 export { default as Backdrop } from "./Backdrop.vue";
 export { default as Button } from "./Button.vue";
 export { default as Dropdown } from "./Dropdown.vue";
+export { default as ExampleModal } from "./ExampleModal.vue";
+export { default as Modal } from "./Modal.vue";
 export { default as NotificationIndicator } from "./NotificationIndicator.vue";
 export { default as Panel } from "./Panel.vue";
