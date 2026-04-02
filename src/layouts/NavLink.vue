@@ -38,7 +38,7 @@ const props = defineProps({
 const linkColor = computed(() => 
     props.red
         ? 'text-red-600 hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-900/20'
-        : 'text-neutral-500 hover:bg-neutral-200/45 dark:text-neutral-300 dark:hover:bg-neutral-700/45'
+        : 'btn-ghost'
 );
 
 const selectLink = () => {

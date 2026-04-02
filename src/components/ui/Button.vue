@@ -31,7 +31,7 @@ const baseClasses = 'inline-flex items-center justify-center font-medium rounded
 const variantClasses = {
     primary: 'bg-primary-500 text-neutral-100 hover:not-disabled:bg-primary-600 dark:bg-primary-500/75 dark:hover:not-disabled:bg-primary-500',
     secondary: 'bg-neutral-200 text-neutral-600 hover:not-disabled:bg-neutral-300/75 dark:bg-neutral-700 dark:text-neutral-100 dark:hover:not-disabled:bg-neutral-600',
-    outline: 'border  border-primary-500/75 hover:not-disabled:border-primary-500 text-primary-500 bg-primary-500/10 hover:not-disabled:bg-primary-400/20 dark:border-primary-500/75 dark:hover:not-disabled:border-primary-500 dark:text-primary-400 dark:bg-primary-500/10 dark:hover:not-disabled:bg-primary-400/20',
+    outline: 'border border-primary-500/75 hover:not-disabled:border-primary-500 text-primary-500 bg-primary-500/10 hover:not-disabled:bg-primary-400/20 dark:border-primary-500/75 dark:hover:not-disabled:border-primary-500 dark:text-primary-400 dark:bg-primary-500/10 dark:hover:not-disabled:bg-primary-400/20',
     ghost: 'btn-ghost',
     danger: 'bg-red-600 text-neutral-100 hover:not-disabled:bg-red-700/95 dark:bg-red-500 dark:hover:not-disabled:bg-red-400',
 };

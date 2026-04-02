@@ -2,6 +2,7 @@
 @source "../**/*.vue";
 
 @custom-variant dark (&:where(.dark, .dark *));
+@custom-variant not-disabled (&:not(:disabled));
 
 @font-face {
     font-family: 'Chiron';
@@ -30,11 +31,15 @@
     }
     
     p, h1, h2, h3, h4, h5, h6 {
-        @apply ;
+        @apply text-neutral-500 dark:text-neutral-400;
+    }
+    
+    h1 {
+        @apply text-4xl font-bold;
     }
 }
 
-@layer component {
+@layer components {
     .btn-ghost {
         @apply text-neutral-500 hover:not-disabled:text-neutral-600 hover:not-disabled:bg-neutral-200/45 dark:text-neutral-300 dark:hover:not-disabled:text-neutral-200 dark:hover:not-disabled:bg-neutral-700/45;
     }

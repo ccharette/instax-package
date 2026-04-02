@@ -42,7 +42,7 @@ const handleLogout = () => {
             <span class="flex size-8 items-center justify-center overflow-hidden">
                 <img :src="user.avatar" :alt="user.name" class="size-full object-cover rounded-sm" />
             </span>
-            <span class="rounded-sm h-9 px-2 flex items-center space-x-2 transition-colors group-hover:bg-neutral-200/45 dark:group-hover:bg-neutral-700/45">
+            <span class="rounded-sm h-9 px-2 flex items-center space-x-2 transition-colors btn-ghost">
                 <span class="hidden text-sm font-medium text-neutral-500 dark:text-neutral-300 md:block">
                     {{ user.name }}
                 </span>
